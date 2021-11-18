@@ -73,7 +73,7 @@
         opacity: 1;
         display: flex;
         justify-content: center;
-        text-align: center;
+        align-items: center;
         vertical-align: center;
         transform: scale(0.5);
 
@@ -95,6 +95,7 @@
 
 <div class="pop hide">
     <img src="img/c02.jpg"/>
+    <h3>ADD CART</h3>
 </div>
 
 
@@ -110,74 +111,15 @@
             <h1>MENU</h1>
 
             <ul class="menuList">
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c02.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c03.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c05.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c02.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c03.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c05.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c02.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c03.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mdiv">
-                        <img src="img/c05.jpg">
-                        <div>콜드브루</div>
-                        <div>4500</div>
-                    </div>
-                </li>
+
             </ul>
 
         </div>
         <div class="orderDiv">
             <h1>ORDER</h1>
+            <ul class="orderList">
+
+            </ul>
         </div>
     </div>
 
@@ -227,13 +169,60 @@
         const targetMenu = menus[idx]
         const targetPicture = targetMenu.picture
         popEle.querySelector("img").setAttribute("src", targetPicture)
-
+        popEle.querySelector("h3").setAttribute("data-idx", idx)
         popEle.setAttribute("class", "pop show")
     },false)
 
     popEle.addEventListener("click", () => {
         popEle.setAttribute("class", "pop hide")
     },false)
+
+
+    document.querySelector(".pop h3").addEventListener("click", e => {
+        e.stopPropagation()
+        e.preventDefault()
+        const target = e.target
+        const menu = menus[target.getAttribute("data-idx")]
+        console.log(menu)
+
+        addCart(menu)
+
+    }, false)
+
+    function addCart(menu){
+
+        const result = orders.filter(oi => oi.name === menu.name)
+
+        console.log("-------check result-----------")
+        console.log(result)
+
+        if(result.length > 0){
+            result[0].qty += 1
+
+        }else {
+            orders.push({...menu, qty:1})
+        }
+
+        console.log(orders)
+        showOrderItems()
+    }
+
+
+
+    function showOrderItems() {
+        const orderListEle = document.querySelector(".orderList")
+
+        let str = ''
+        let sum = 0
+        for (let i = 0; i < orders.length ; i++) {
+            const orderItem = orders[i]
+            str += `<li>${orderItem.name} ============= ${orderItem.qty} =========== ${orderItem.price * orderItem.qty} </li>`
+            sum += orderItem.price * orderItem.qty
+        }
+        str += `<hr/><h1>${sum}</h1>`
+        orderListEle.innerHTML = str
+
+    }
 
 </script>
 </body>
