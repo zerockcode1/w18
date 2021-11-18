@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .row {
+        width: 100vw;
+    }
+
+    .header {
+        background-color: yellow;
+        height: 10vh;
+    }
+
+    .main {
+        background-color: coral;
+        height: 80vh;
+        display: flex;
+    }
+
+
+    .main .menuDiv {
+        background-color: greenyellow;
+        width: 50vw;
+    }
+
+
+    .footer {
+        background-color: hotpink;
+        height: 10vh;
+    }
+
+
+</style>
+
+<div class="container">
+    <div class="row header">
+
+    </div>
+    <div class="row main">
+        <div class="menuDiv">
+            <h1>MENU</h1>
+        </div>
+        <div class="orderDiv">
+            <h1>ORDER</h1>
+        </div>
+    </div>
+    <div class="row footer">
+
+    </div>
+</div>
+<script>
+    const orders = []
+
+    const menus = [
+        {name:'콜드브루', price:4500, picture:'img/c02.jpg'},
+        {name:'토피넛라떼', price:4500, picture:'img/c03.jpg'},
+        {name:'믹스커피', price:1000, picture:'img/c05.jpg'},
+        {name:'자몽주스', price:6500, picture:'img/j01.jpg'},
+        {name:'망고주스', price:9500, picture:'img/j02.jpg'},
+        {name:'포도주스', price:4000, picture:'img/j03.jpg'},
+        {name:'키위주스', price:5500, picture:'img/j04.jpg'},
+        {name:'갈배', price:1000, picture:'img/j05.jpg'},
+        {name:'딸기케이크', price:5000, picture:'img/k01.jpg'},
+        {name:'더블치즈케이크', price:4000, picture:'img/k03.jpg'},
+        {name:'한라봉케이크', price:5500, picture:'img/k05.jpg'},
+
+
+    ]
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
