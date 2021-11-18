@@ -170,12 +170,28 @@
         const targetPicture = targetMenu.picture
         popEle.querySelector("img").setAttribute("src", targetPicture)
         popEle.querySelector("h3").setAttribute("data-idx", idx)
-        popEle.setAttribute("class", "pop show")
+        togglePop()
     },false)
 
     popEle.addEventListener("click", () => {
         popEle.setAttribute("class", "pop hide")
     },false)
+
+    function togglePop() {
+        const classValue = popEle.getAttribute("class")
+
+        let showFlag = false
+        if(classValue.indexOf("show") > 0){
+            showFlag = true
+        }
+
+        if(showFlag){
+            popEle.setAttribute("class", "pop hide")
+        }else {
+            popEle.setAttribute("class", "pop show")
+        }
+
+    }
 
 
     document.querySelector(".pop h3").addEventListener("click", e => {
@@ -205,6 +221,7 @@
 
         console.log(orders)
         showOrderItems()
+        togglePop()
     }
 
 
